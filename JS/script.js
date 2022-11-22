@@ -55,10 +55,10 @@ function weatherDetails(info){
         const {description, id} = info.weather[0];
         const {feels_like, humidity, temp} = info.main;
         
-        wrapper.querySelector(".temp .numb").innerText = temp;
+        wrapper.querySelector(".temp .numb").innerText = Math.floor(temp);
         wrapper.querySelector(".weather").innerText = description;
         wrapper.querySelector(".location span").innerText = `${city}, ${country}`;
-        wrapper.querySelector(".details .temp .numb2").innerText = feels_like;
+        wrapper.querySelector(".details .temp .numb2").innerText = Math.floor(feels_like);
         wrapper.querySelector(".humidity .numb").innerText = humidity + `%`;
         
         infoTxt.classList.remove("pending", "error");
