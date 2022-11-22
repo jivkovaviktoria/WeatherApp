@@ -1,16 +1,16 @@
-﻿const wrapper = document.querySelector(".wrapper"), 
-    inputPart = wrapper.querySelector(".input-part"),
-    infoTxt = inputPart.querySelector(".info-txt"),
-    icon = wrapper.querySelector(".weather-part img"),
-    backArrow = wrapper.querySelector("header i");
-
+﻿const wrapper = document.querySelector(".wrapper");
+const inputPart = wrapper.querySelector(".input-part");
+const infoTxt = inputPart.querySelector(".info-txt");
+const icon = wrapper.querySelector(".weather-part img");
+const backArrow = wrapper.querySelector("header i");
 const inputField = document.getElementById("input");
 const locationButton = document.getElementById("currentLocation");
 
 let api;
-
+let apiKey = '69d455ec939d65d892bb538eae6bf382';
+    
 inputField.addEventListener('keyup', e => {
-    if(e.key == "Enter" && inputField.value != ""){
+    if(e.key === "Enter" && inputField.value !== ""){
         requestApi(inputField.value);
     }
 });
@@ -25,9 +25,12 @@ locationButton.addEventListener("click", () => {
 
 function success(location){
     const {latitude, longitude} = location.coords; //getting the coordinates of the user
-    api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=69d455ec939d65d892bb538eae6bf382`;
-    
-    fetchData();
+    api = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+
+    infoTxt.innerText = "Loading...";
+    infoTxt.classList.add("pending");
+
+    fetch(api).then(response => response.json()).then(result => weatherDetails(result));
 }
 
 function error(error){
@@ -36,16 +39,14 @@ function error(error){
 }
 
 function requestApi(city){
-    api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=69d455ec939d65d892bb538eae6bf382`;
-    fetchData();
-}
+    api = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
 
-function fetchData(){
     infoTxt.innerText = "Loading...";
     infoTxt.classList.add("pending");
 
     fetch(api).then(response => response.json()).then(result => weatherDetails(result));
 }
+
 function weatherDetails(info){
     infoTxt.classList.replace("pending", "error");
     if(info.cod === "404"){

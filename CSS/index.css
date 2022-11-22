@@ -22,7 +22,6 @@ body{
 }
 header i{
     cursor: pointer;
-    font-size: 0px;
     margin-right: 8px;
 }
 .wrapper.active header i{
@@ -90,7 +89,6 @@ header i{
     background: #cc9ee0;
     cursor: pointer;
 }
-
 .wrapper .weather-part{
     margin: 30px 0 0;
     display: none;
@@ -154,7 +152,6 @@ header i{
     margin-top: -3px;
 }
 .details .temp .deg {
-    margin: 0;
     padding: 0 2px 0 1px;
     font-size: 17px;
 }
