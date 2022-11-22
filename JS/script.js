@@ -1,7 +1,7 @@
 ﻿const wrapper = document.querySelector(".wrapper"), 
     inputPart = wrapper.querySelector(".input-part"),
-    infoTxt = inputPart.querySelector(".info-txt");
-
+    infoTxt = inputPart.querySelector(".info-txt"),
+    icon = wrapper.querySelector(".weather-part img");
 
 const inputField = document.getElementById("input");
 const locationButton = document.getElementById("currentLocation");
@@ -47,7 +47,7 @@ function fetchData(){
 }
 function weatherDetails(info){
     infoTxt.classList.replace("pending", "error");
-    if(info.cod == "404"){
+    if(info.cod === "404"){
         infoTxt.innerText = "Invalid city!";
     } else{
         const city = info.name;
@@ -55,6 +55,21 @@ function weatherDetails(info){
         const {description, id} = info.weather[0];
         const {feels_like, humidity, temp} = info.main;
         
+        if(id === 800){
+            icon.src = "/WeatherIcons/clear.svg";  
+        }else if(id >= 200 && id <= 232) {
+            icon.src = "/WeatherIcons/storm.svg";
+        }else if(id >= 600 && id <= 622) {
+            icon.src = "/WeatherIcons/snow.svg";
+        }else if(id >= 701 && id <= 781) {
+            icon.src = "/WeatherIcons/haze.svg";
+        }else if(id >= 801 && id <= 804) {
+            icon.src = "/WeatherIcons/cloud.svg";
+        }else if(id >= 300 && id <= 321) {
+            icon.src = "/WeatherIcons/rain.svg";
+        }
+        
+        console.log(id);
         wrapper.querySelector(".temp .numb").innerText = Math.floor(temp);
         wrapper.querySelector(".weather").innerText = description;
         wrapper.querySelector(".location span").innerText = `${city}, ${country}`;
