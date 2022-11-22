@@ -50,7 +50,19 @@ function weatherDetails(info){
     if(info.cod == "404"){
         infoTxt.innerText = "Invalid city!";
     } else{
+        const city = info.name;
+        const country = info.sys.country;
+        const {description, id} = info.weather[0];
+        const {feels_like, humidity, temp} = info.main;
+        
+        wrapper.querySelector(".temp .numb").innerText = temp;
+        wrapper.querySelector(".weather").innerText = description;
+        wrapper.querySelector(".location span").innerText = `${city}, ${country}`;
+        wrapper.querySelector(".details .temp .numb2").innerText = feels_like;
+        wrapper.querySelector(".humidity .numb").innerText = humidity + `%`;
+        
         infoTxt.classList.remove("pending", "error");
+        wrapper.classList.add("active");
         console.log(info);
     }
 }
