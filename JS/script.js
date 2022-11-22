@@ -1,7 +1,8 @@
 ﻿const wrapper = document.querySelector(".wrapper"), 
     inputPart = wrapper.querySelector(".input-part"),
     infoTxt = inputPart.querySelector(".info-txt"),
-    icon = wrapper.querySelector(".weather-part img");
+    icon = wrapper.querySelector(".weather-part img"),
+    backArrow = wrapper.querySelector("header i");
 
 const inputField = document.getElementById("input");
 const locationButton = document.getElementById("currentLocation");
@@ -81,3 +82,7 @@ function weatherDetails(info){
         console.log(info);
     }
 }
+
+backArrow.addEventListener("click", () =>{
+    wrapper.classList.remove("active");
+})
