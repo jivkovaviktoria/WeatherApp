@@ -350,4 +350,3 @@ MigrationBackup/
 .ionide/
 
 .idea/
-*.apiinfo.js
