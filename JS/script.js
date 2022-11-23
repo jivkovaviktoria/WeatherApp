@@ -7,7 +7,7 @@ const inputField = document.getElementById("input");
 const locationButton = document.getElementById("currentLocation");
 
 let api;
-let apiKey = '69d455ec939d65d892bb538eae6bf382';
+let apiKey = config.apiKey;
     
 inputField.addEventListener('keyup', e => {
     if(e.key === "Enter" && inputField.value !== ""){
